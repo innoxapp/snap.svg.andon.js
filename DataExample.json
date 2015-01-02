@@ -1,0 +1,9 @@
+{
+    "type": "snap.svg.andon.data",
+    "fields": [
+        {"field_name": "FIELD01", "value": "T1"},
+        {"field_name": "FIELD02", "value": "T2"},
+        {"field_name": "FIELD03", "value": "T3"},
+		{"field_name": "FIELD04", "value": "T4"}
+    ]
+}
