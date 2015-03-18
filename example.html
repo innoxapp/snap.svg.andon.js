@@ -3,10 +3,9 @@
     <head>
         <meta charset="utf-8">
         <meta name="copyright">
-		
         <title>Andon Test</title>
-		
         <style media="screen">
+		* { padding: 0; margin: 0; }
         body {
 		    //uncomment following row to set black backgroud
             //background: #000;  
@@ -30,20 +29,35 @@
 		<script src="./js/snap.svg.andon.js"></script>
 		
         <script>
-			window.onload = function () {				
-				var myAndonScreen = new AndonScreen(sAndonId        = "MyFirstAndon",
-												    sSvgPlaceHolder = "#mysvgtoload", 
-												    sSvgSrcFile     = "./img/andon_template.svg");
-													//sSvgSrcFile     = "./img/football_panel.svg");
-													
-				myAndonScreen.refreshData();
-			}
+		
+		/*
+		  Text Filed Name --> textdata_FIELD03
+		  Text Filed Label --> #textdata_FIELD03
+		  
+		  squaredata_FIELD01
+		  #squaredata_FIELD01
+		  
+		*/
+		
+		window.onload = function () {				
+			var myAndonScreen = new AndonScreen(sAndonId        = "MyFirstAndon",
+												sSvgPlaceHolder = "#mysvgtoload", 
+												sSvgSrcFile     = "./img/football_panel.svg");
+												
+			myAndonScreen.refreshData("./DataExample.json");
+			
+			//fullscreen!
+			var MySvg = document.getElementById('mysvgtoload');
+			MySvg.setAttribute("viewBox","0 0 " + $(window).width() + " " + $(window).height());
+			MySvg.setAttribute("width","100%");
+			MySvg.setAttribute("height","100%");
+		}
         </script>
     </head>
     <body>	
 	
-	<div id="svgdiv" width="100%" height="100%" >
-      <svg id="mysvgtoload" width="100%" height="100%" viewBox="0 0 600 800" preserveAspectRatio="xMaxYmax" ></svg>   
+	<div id="svgdiv" width="100%" height="100%" align="center">
+	  <svg id="mysvgtoload" name="mysvgtoload" width="100%" height="100%" viewBox="0 0 1336 768"></svg>   
 	</div>
     </body>
 </html>

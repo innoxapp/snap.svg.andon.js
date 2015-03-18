@@ -12,6 +12,7 @@ function AndonScreen(sAndonId, sSvgPlaceHolderTag, sSvgSrcFile) {
 	//
 	var l = Snap.load(sSvgSrcFile, onSVGLoaded);
 
+
 	//
 	// Callback fnction after SVG load (Snap.js)
 	//
@@ -80,20 +81,93 @@ function AndonScreen(sAndonId, sSvgPlaceHolderTag, sSvgSrcFile) {
 	// Update data field inside the SVG image loaded in the screen
 	//
 	this.updDataFieldInsideSVG = function (sFieldName, sNewValue) {
-		//alert("#textdata_" + sFieldName);
 
 		//Update data inside svg text object with name "textdata_[myfieldname]" ie "textdata_FIELD01"
+		//var myText = s.select("text#textdata_" + sFieldName);
 		var myText = s.select("#textdata_" + sFieldName);
-		myText.attr({
-			text : sNewValue
-		});
+    
+		// recognize inside the text item the Tspan presence and how many levels (max 3 levels)
+		var myGroup = document.querySelector("#textdata_" + sFieldName);
+		var tSpanDeptLevel = 0;
 
-		//fade-in / fade-out on thanged text object
+		try {
+			if (myGroup.lastChild.nodeName == 'tspan'){
+			  tSpanDeptLevel = tSpanDeptLevel + 1;
+			}
+			if (myGroup.lastChild.lastChild.nodeName == 'tspan'){
+			  tSpanDeptLevel = tSpanDeptLevel + 1;
+			}  
+			if (myGroup.lastChild.lastChild.lastChild.nodeName == 'tspan'){
+			  tSpanDeptLevel = tSpanDeptLevel + 1;
+			}  
+		}
+		catch(err) {
+		}
+
+		// Zero dept level we use the snap.svg  .attr propertyes
+		if (tSpanDeptLevel == 0){
+			myText.attr({
+				text : sNewValue
+			});
+				/*myText.attr({
+					value : sNewValue
+				});*/
+		} else {
+		  if (tSpanDeptLevel == 1){
+		    myGroup.lastChild.innerHTML = sNewValue;
+		  }
+		  if (tSpanDeptLevel == 2){
+		    myGroup.lastChild.lastChild.innerHTML = sNewValue;
+		  }
+		  if (tSpanDeptLevel == 3){
+		    myGroup.lastChild.lastChild.lastChild.innerHTML = sNewValue;
+		  }
+		}
+		
+
 		/*
-		CSS Query Selector logics explanation: Example [id%=mysearchtext]
-		^= indicates "starts with".
-		$= indicates "ends with"
-		 */
+			alert("nodeName(1):" + myGroup.lastChild.nodeName);
+			alert("innerHTML(1):" + myGroup.lastChild.innerHTML);
+			alert("nodeName(2):" + myGroup.lastChild.lastChild.nodeName);
+			alert("innerHTML(2):" + myGroup.lastChild.lastChild.innerHTML);
+			alert("nodeName(3):" + myGroup.lastChild.lastChild.lastChild.nodeName);
+			alert("innerHTML(3):" + myGroup.lastChild.lastChild.lastChild.innerHTML);
+		*/
+
+
+		/*
+		 // DEEP  ON CHILD NODES
+		if (myGroup.childNodes.length) {
+			var children = myGroup.childNodes;
+			for (var i = 0; i < children.length; i++) {
+				var myChild = children[i];
+				//2nd level child		
+				var twoChildren = myChild.childNodes;
+				for (var i = 0; i < twoChildren.length; i++) {			
+					var twoMyChild = twoChildren[i];
+		//			alert('twoMyChild>id:' + twoMyChild.nodeName + '>nodeName:' + twoMyChild.nodeName + '>innerHTML:' + twoMyChild.innerHTML);
+					if (twoMyChild.innerHTML == '00:00'){
+					  twoMyChild.innerHTML = '00:80';
+					}
+					if (twoMyChild.innerHTML == '00'){
+					  twoMyChild.innerHTML = '99';
+					}			
+				}
+			}
+		}
+		*/	
+
+		
+        //
+		// FADE-IN / FADE-OUT on thanged text object
+		//
+
+			/*
+			CSS Query Selector logics explanation: Example [id%=mysearchtext]
+			^= indicates "starts with".
+			$= indicates "ends with"
+			 */		
+				
 		s.selectAll("[id $=" + sFieldName + "]").forEach(function (element) {
 			element.animate({
 				"fill-opacity" : "0"
@@ -102,19 +176,25 @@ function AndonScreen(sAndonId, sSvgPlaceHolderTag, sSvgSrcFile) {
 					"fill-opacity" : "1"
 				}, 1000, function () {});
 			});
-		});
-
+		});		
 	};
 
 
 	//
 	//  Refresh data fields inside the SVG template loaded before
 	//
-	this.refreshData = function () {
-        that.getJsonData("./DataExample.json");
+	this.refreshData = function (sDataFile) {
+	
+	    // example  sDataFile =  "./DataExample.json";
+        //that.getJsonData("./DataExample.json");
+		that.getJsonData(sDataFile);
+		
+		//that.getJsonData("./DataExample_old.json");
+		
 		var myTimer = $.timer(function () {
 				//alert('This message was sent by a timer.');
-				that.getJsonData("./DataExample.json");
+				//that.getJsonData("./DataExample.json");
+				that.getJsonData(sDataFile);
 			});
 
 		myTimer.set({
