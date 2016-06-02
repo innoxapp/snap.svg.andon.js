@@ -240,6 +240,15 @@ function AndonScreen(sAndonId, sSvgPlaceHolderTag, sSvgSrcFile, bSilent) {
 			if (myGroup.lastChild.lastChild.lastChild.nodeName == 'tspan'){
 			  tSpanDeptLevel = tSpanDeptLevel + 1;
 			}  
+			if (myGroup.lastChild.lastChild.lastChild.lastChild.nodeName == 'tspan'){
+			  tSpanDeptLevel = tSpanDeptLevel + 1;
+			}  
+			if (myGroup.lastChild.lastChild.lastChild.lastChild.lastChild.nodeName == 'tspan'){
+			  tSpanDeptLevel = tSpanDeptLevel + 1;
+			}  		
+			if (myGroup.lastChild.lastChild.lastChild.lastChild.lastChild.nodeName.nodeName == 'tspan'){
+			  tSpanDeptLevel = tSpanDeptLevel + 1;
+			}  	
 		}
 		catch(err) {
 		}
@@ -262,6 +271,15 @@ function AndonScreen(sAndonId, sSvgPlaceHolderTag, sSvgSrcFile, bSilent) {
 			  }
 			  if (tSpanDeptLevel == 3){
 			    myGroup.lastChild.lastChild.lastChild.innerHTML = sNewValue;
+			  }
+			  if (tSpanDeptLevel == 4){
+			    myGroup.lastChild.lastChild.lastChild.lastChild.innerHTML = sNewValue;
+			  }
+			  if (tSpanDeptLevel == 5){
+			    myGroup.lastChild.lastChild.lastChild.lastChild.lastChild.innerHTML = sNewValue;
+			  }
+			  if (tSpanDeptLevel == 6){
+			    myGroup.lastChild.lastChild.lastChild.lastChild.lastChild.lastChild.innerHTML = sNewValue;
 			  }
 			}
 			
