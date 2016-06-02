@@ -1,10 +1,10 @@
 {
     "type": "snap.svg.andon.data",
     "fields": [
-	    {"field_name": "TIME", "value": "10:40"},
-		{"field_name": "GUESTPOINTS", "value": "20"},
-		{"field_name": "HOMEPOINTS", "value": "00"},
-		{"field_name": "TITLE", "value": "My Title Here"},
-		{"field_name": "SUBTITLE", "value": "My SubTitle Here"}
+	    {"field_name": "textdata_TIME", "value": "10:40"},
+		{"field_name": "textdata_GUESTPOINTS", "value": "20"},
+		{"field_name": "textdata_HOMEPOINTS", "value": "00"},
+		{"field_name": "textdata_TITLE", "value": "My Title Here"},
+		{"field_name": "textdata_SUBTITLE", "value": "My SubTitle Here"}
     ]
 }

@@ -40,11 +40,15 @@
 		*/
 		
 		window.onload = function () {				
-			var myAndonScreen = new AndonScreen(sAndonId        = "MyFirstAndon",
-												sSvgPlaceHolder = "#mysvgtoload", 
-												sSvgSrcFile     = "./img/football_panel.svg");
+			var myAndonScreen = new AndonScreen(sAndonId        = "MyFirstAndon",             //andon name
+												sSvgPlaceHolder = "#mysvgtoload",             //placeholder inside the html page
+												sSvgSrcFile     = "./img/football_panel.svg", //svg image to load
+												bSilent         = false                       //show errors?
+												);                    
 												
-			myAndonScreen.refreshData("./DataExample.json");
+			myAndonScreen.refreshData(sDataFile    = "./DataExample.json",  //json data source url
+			                          nRefreshTime = 1000                   //millis seconds refresh every
+									  );
 			
 			//fullscreen!
 			var MySvg = document.getElementById('mysvgtoload');
