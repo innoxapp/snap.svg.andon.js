@@ -6,6 +6,8 @@ what is it?
 snap.svg.andon.js is a javascript library based on [snap.svg](http://snapsvg.io/) that permit to use .svg images files as templates to create web andon/control/scada panels with dynamic text data loaded from a json data source file or page.
 
 
+You can try it on jsfiddle https://jsfiddle.net/sansacugnisiun/qxxq3zrp/38/
+
 Note: the example.html works only on firefox due to the fact that the data is taken from the local DataExample.json file locally (and not from an external url)
 
 
